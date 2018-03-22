@@ -13,8 +13,18 @@ end
 
 client = Dato::Site::Client.new(token)
 
+####################################
+## !!REMOVE ALL SITE ITEM TYPES!! ##
+#####################################
+client.item_types.all.each do |item_type|
+  client.item_types.destroy(item_type[:id])
+end
+
+############
+# HOMEPAGE #
+############
 #Create the model for homepage
-item_type = client.item_types.create(
+homepage = client.item_types.create(
   name: 'Homepage',
   singleton: true,
   modular_block: false,
@@ -22,13 +32,14 @@ item_type = client.item_types.create(
   tree: false,
   api_key: 'homepage',
   ordering_direction: nil,
-  ordering_field: nil
+  ordering_field: nil,
+  draft_mode_active: false,
 )
-item_type_id = item_type[:id]
-
-#Add title, subtitle and seo fields
-title = client.fields.create(
-  item_type_id,
+homepage_type_id = homepage[:id]
+##FIELDS
+#title
+client.fields.create(
+  homepage_type_id,
   api_key: 'title',
   field_type: 'string',
   appeareance: { type: 'title' },
@@ -38,8 +49,9 @@ title = client.fields.create(
   hint: '',
   validators: { required: {} }
 )
-subtitle = client.fields.create(
-  item_type_id,
+#subtitle
+client.fields.create(
+  homepage_type_id,
   api_key: 'subtitle',
   field_type: 'string',
   appeareance: { type: 'plain' },
@@ -49,8 +61,9 @@ subtitle = client.fields.create(
   hint: '',
   validators: { required: {} }
 )
-seo = client.fields.create(
-  item_type_id,
+#seo
+client.fields.create(
+  homepage_type_id,
   api_key: 'seo',
   label: 'SEO',
   localized: false,
@@ -60,11 +73,224 @@ seo = client.fields.create(
   position: 3,
   validators: {}
 )
-
 #Create default content for homepage
-homepage = client.items.create(
-  item_type: item_type_id,
-  title: 'My Awesome AMP Website',
-  subtitle: 'Middleman + DatoCMS + Tailwind Powered!',
+homepage_content = client.items.create(
+  item_type: homepage_type_id,
+  title: 'Welcome',
+  subtitle: 'NeedBrainz.com website',
   seo: nil
+)
+
+##################
+# MODULAR BLOCKS #
+##################
+##TEXT
+block_text = client.item_types.create(
+  name: 'Text',
+  singleton: false,
+  sortable: false,
+  api_key: 'text',
+  ordering_field: nil,
+  ordering_direction: nil,
+  tree: false,
+  modular_block: true,
+  draft_mode_active: false
+)
+client.fields.create(
+  block_text[:id],
+  api_key: 'title',
+  field_type: 'string',
+  appeareance: { type: 'title' },
+  label: 'Title',
+  localized: false,
+  position: 1,
+  hint: '',
+  validators: {}
+)
+client.fields.create(
+  block_text[:id],
+  api_key: 'content',
+  field_type: 'text',
+  appeareance: { type: 'markdown' },
+  label: 'Content',
+  localized: false,
+  position: 2,
+  hint: '',
+  validators: {}
+)
+
+##TEXT + IMAGE
+block_text_image = client.item_types.create(
+  name: 'Text + Image',
+  singleton: false,
+  sortable: false,
+  api_key: 'text_image',
+  ordering_field: nil,
+  ordering_direction: nil,
+  tree: false,
+  modular_block: true,
+  draft_mode_active: false
+)
+client.fields.create(
+  block_text_image[:id],
+  api_key: 'title',
+  field_type: 'string',
+  appeareance: { type: 'title' },
+  label: 'Title',
+  localized: false,
+  position: 1,
+  hint: '',
+  validators: {}
+)
+client.fields.create(
+  block_text_image[:id],
+  api_key: 'content',
+  field_type: 'text',
+  appeareance: { type: 'markdown' },
+  label: 'Content',
+  localized: false,
+  position: 2,
+  hint: '',
+  validators: {}
+)
+client.fields.create(
+  block_text_image[:id],
+  api_key: 'image',
+  field_type: 'image',
+  appeareance: {},
+  label: 'Image',
+  localized: false,
+  position: 3,
+  hint: '',
+  validators: { required: {} }
+)
+client.fields.create(
+  block_text_image[:id],
+  api_key: 'image_position',
+  field_type: 'string',
+  appeareance: { type: 'plain' },
+  label: 'Image Position',
+  localized: false,
+  position: 3,
+  hint: '',
+  validators: { enum: { values: ["left", "right", "top", "bottom"] } }
+)
+
+##GALLERY
+block_gallery = client.item_types.create(
+  name: 'Gallery',
+  singleton: false,
+  sortable: false,
+  api_key: 'gallery',
+  ordering_field: nil,
+  ordering_direction: nil,
+  tree: false,
+  modular_block: true,
+  draft_mode_active: false
+)
+client.fields.create(
+  block_gallery[:id],
+  api_key: 'images',
+  field_type: 'gallery',
+  appeareance: {},
+  label: 'Images',
+  localized: false,
+  position: 1,
+  hint: '',
+  validators: {}
+)
+
+##FILE
+block_file = client.item_types.create(
+  name: 'File',
+  singleton: false,
+  sortable: false,
+  api_key: 'file',
+  ordering_field: nil,
+  ordering_direction: nil,
+  tree: false,
+  modular_block: true,
+  draft_mode_active: false
+)
+client.fields.create(
+  block_file[:id],
+  api_key: 'file',
+  field_type: 'file',
+  appeareance: {},
+  label: 'File',
+  localized: false,
+  position: 1,
+  hint: '',
+  validators: {}
+)
+
+#################
+# BLOG ARTICLES #
+#################
+blog_type = client.item_types.create(
+  name: 'Article',
+  singleton: false,
+  modular_block: false,
+  sortable: false,
+  tree: false,
+  api_key: 'article',
+  ordering_direction: nil,
+  ordering_field: nil,
+  draft_mode_active: true
+)
+blog_type_id = blog_type[:id]
+blog_title = client.fields.create(
+  blog_type_id,
+  api_key: 'title',
+  field_type: 'string',
+  appeareance: { type: 'title' },
+  label: 'Title',
+  localized: false,
+  position: 1,
+  hint: '',
+  validators: { required: {} }
+)
+client.fields.create(
+  blog_type_id,
+  api_key: 'cover_image',
+  field_type: 'image',
+  appeareance: {},
+  label: 'Cover Image',
+  localized: false,
+  position: 2,
+  hint: '',
+  validators: {}
+)
+client.fields.create(
+  blog_type_id,
+  api_key: 'slug',
+  field_type: 'slug',
+  appeareance: { title_field_id: blog_title[:id], url_prefix: 'https://www.needbrainz.com/blog/' },
+  label: 'Slug',
+  localized: false,
+  position: 3,
+  hint: '',
+  validators: { unique: {} }
+)
+client.fields.create(
+  blog_type_id,
+  api_key: 'seo',
+  field_type: 'seo',
+  appeareance: {},
+  label: 'SEO',
+  localized: false,
+  position: 4,
+  hint: '',
+  validators: {}
+)
+client.fields.create(
+  blog_type_id,
+  api_key: 'blocks',
+  field_type: 'rich_text',
+  appeareance: {},
+  label: 'Blocks',
+  localized: false,
+  position: 5,
+  hint: '',
+  validators: { rich_text_blocks: { item_types: [block_text[:id], block_text_image[:id], block_gallery[:id], block_file[:id]] } },
 )
