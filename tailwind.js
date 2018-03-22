@@ -50,8 +50,8 @@ let colors = {
   'grey': '#b8c2cc',
   'white': '#ffffff',
 
-  'primary': '#de87aa',
-  'primary-light': '#efb9cf',
+  'primary': '#ff1867',
+  'primary-light': '#ff84ae',
 }
 
 module.exports = {
