@@ -23,7 +23,8 @@ set :markdown_engine, :redcarpet
 set :markdown, fenced_code_blocks: true, smartypants: true, with_toc_data: true
 
 # plugins
-activate :dato, live_reload: true
+preview = ENV['SITE_ENV'] == 'staging' ? true:false
+activate :dato, live_reload: true, preview: preview
 
 # tell Middleman to ignore the template
 ignore "/templates/*"
@@ -35,7 +36,7 @@ dato.tap do |dato|
     proxy "/blog/#{article.slug}/index.html", "/templates/blog_post.html", locals: { article: article }
   end
 
-  paginate dato.articles.sort_by(), "/blog", "/templates/blog.html", suffix: "/page/:num/index", per_page: 1
+  paginate dato.articles.sort_by(), "/blog", "/templates/blog.html", suffix: "/page/:num/index", per_page: 10
 end
 
 activate :directory_indexes
