@@ -1,0 +1,14 @@
+<h1>Blog</h1>
+<% items.each do |article| %>
+  <h2><%= article.title %></h2>
+<% end %>
+<div class="pagination">
+
+  <% if pager.previous_page  %>
+    <%= link_to "Previous page", pager.page_path(pager.previous_page), class: "pagination__prev" %>
+  <% end %>
+  <% if pager.next_page  %>
+    <%= link_to "Next page", pager.page_path(pager.next_page), class: "pagination__prev" %>
+  <% end %>
+
+</div>

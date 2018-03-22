@@ -12,5 +12,6 @@ gem 'tzinfo-data', platforms: [:mswin, :mingw, :jruby]
 gem 'middleman', '>= 4.0.0'
 gem 'middleman-minify-html'
 gem 'middleman-dato'
+gem 'middleman-paginate'
 gem 'redcarpet'
 gem 'builder'

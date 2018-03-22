@@ -28,6 +28,16 @@ activate :dato, live_reload: true
 # tell Middleman to ignore the template
 ignore "/templates/*"
 
+activate :pagination
+
+dato.tap do |dato|
+  dato.articles.each do |article|
+    proxy "/blog/#{article.slug}/index.html", "/templates/blog_post.html", locals: { article: article }
+  end
+
+  paginate dato.articles.sort_by(), "/blog", "/templates/blog.html", suffix: "/page/:num/index", per_page: 1
+end
+
 activate :directory_indexes
 activate :external_pipeline,
   name: :gulp,
