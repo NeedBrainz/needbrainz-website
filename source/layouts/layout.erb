@@ -11,6 +11,7 @@
     <% end %>
     <link rel="canonical" href="<%= ENV['SITE_URL'] %><%= current_page.url %>" />
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans:400,700" rel="stylesheet">
     <style amp-custom>
     <%= inline_css "base" %>
     <%= yield_content :css %>
@@ -24,7 +25,7 @@
     <% end %>
   </head>
 
-  <body class="font-sans text-black leading-normal <%= current_page.data.body_class || "default" %>">
+  <body class="font-sans text-black leading-normal antialiased <%= current_page.data.body_class || "default" %>">
     <%= yield %>
     <% if ENV['GA_ACCOUNT'] != '' %>
     <amp-analytics type="googleanalytics">
