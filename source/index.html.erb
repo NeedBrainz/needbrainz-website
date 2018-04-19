@@ -5,11 +5,23 @@ title: Welcome to Middleman
   <%= dato_meta_tags(dato.homepage) %>
 <% end %>
 
-<div class="min-h-screen border-t-6 border-primary bg-pattern p-6 flex items-center justify-center">
-  <div class="text-center">
+<header class="min-h-screen homepage-header relative flex flex-col items-center justify-center bg-black text-white">
+  <div class="container text-center p-8">
     <%= partial "/partials/logo" %>
-    <h1><%= dato.homepage.title %></h1>
-    <h2 class="text-grey"><%= markdown(dato.homepage.subtitle) %></h2>
-
+    <!--<div class="py-2 text-sm sm:text-md md:text-lg lg:text-xl font-bold uppercase">Feel the Web</div>-->
   </div>
-</div>
+</header>
+
+<!--<footer>
+  <div class="container py-4 flex items-center justify-center">
+    <div class="">
+      LIENS
+    </div>
+    <div class="flex-1 text-center">
+      <%= partial "/partials/logosm" %>
+    </div>
+    <div class="">
+      SOCIALS
+    </div>
+  </div>
+</footer>-->

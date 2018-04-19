@@ -12,6 +12,7 @@
     <link rel="canonical" href="<%= ENV['SITE_URL'] %><%= current_page.url %>" />
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans:400,700" rel="stylesheet">
+    <%= dato_favicon_meta_tags %>
     <style amp-custom>
     <%= inline_css "base" %>
     <%= yield_content :css %>
