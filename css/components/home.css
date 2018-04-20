@@ -4,12 +4,10 @@
   100% {filter:  hue-rotate(1); }
 }
 .homepage-header{
-  min-height: 200px;
-  max-height: 450px;
-  padding: 10vw 4vw;
-
-
   background-image: radial-gradient(ellipse at bottom,rgba(221, 221, 221, 0.3) 0,rgba(68, 68, 68, 0.3) 20%,#000);
+  padding: 5vw 2rem;
+  min-height: 250px;
+  max-height: 450px;
 }
 .homepage-header::before{
   content: "";
@@ -26,4 +24,11 @@
   display: block;
   z-index: 10;
   animation: colorize 8s infinite ease-in-out;
+}
+@screen md {
+  .homepage-blog{
+    @apply .relative;
+    margin-top: -80px;
+    z-index: 25;
+  }
 }

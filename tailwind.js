@@ -53,7 +53,7 @@ let colors = {
   'grey': '#9babb4',
   'grey-light': '#dae4e9',
   'grey-lighter': '#f3f7f9',
-  'grey-lightest': '#fafcfc',
+  'grey-lightest': '#f5f5f5',
   'white': '#ffffff',
 
 
@@ -126,11 +126,11 @@ module.exports = {
 
   fonts: {
     'sans': [
-      'Open Sans',
+      'Roboto',
       'sans-serif',
     ],
     'serif': [
-      'Merriweather',
+      'Fira Sans',
       'serif',
     ]
   },

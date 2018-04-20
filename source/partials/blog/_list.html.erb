@@ -1,0 +1,12 @@
+<% image_url = article.cover_image.present? ? article.cover_image.file.width(600).height(300).fit("crop").auto("enhance").format(:jpg).to_url : "" %>
+
+<article class="blog-post flex w-full md:w-1/2">
+  <div class="m-4 shadow bg-white rounded">
+    <div class="post-image" style="min-width: 300px; min-height: 300px; background-image: url('<%= image_url %>');">
+    </div>
+    <div class="post-info p-4">
+      <h3><%= link_to article.title, "/blog/#{article.slug}/index.html" %></h3>
+      <%= pp(article) %>
+    </div>
+  </div>
+</article>

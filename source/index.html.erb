@@ -5,23 +5,20 @@ title: Welcome to Middleman
   <%= dato_meta_tags(dato.homepage) %>
 <% end %>
 
-<header class="min-h-screen homepage-header relative flex flex-col items-center justify-center bg-black text-white">
+<header class="homepage-header relative flex flex-col items-center justify-center bg-black text-white">
   <div class="container text-center p-8">
     <%= partial "/partials/logo" %>
-    <!--<div class="py-2 text-sm sm:text-md md:text-lg lg:text-xl font-bold uppercase">Feel the Web</div>-->
+    <h2 class="py-2 text-sm sm:text-md md:text-lg lg:text-xl font-bold uppercase">
+      <%= dato.homepage.subtitle %>
+    </h2>
   </div>
 </header>
-
-<!--<footer>
-  <div class="container py-4 flex items-center justify-center">
-    <div class="">
-      LIENS
+<section class="homepage-blog">
+    <div class="container">
+      <div class="flex flex-wrap justify-center -mx-4">
+        <% dato.articles.sort_by(&:published_date).reverse[0...3].each_with_index do |article, index| %>
+          <%= partial "partials/blog/list", locals: { article: article, index: index+1 } %>
+        <% end %>
+      </div>
     </div>
-    <div class="flex-1 text-center">
-      <%= partial "/partials/logosm" %>
-    </div>
-    <div class="">
-      SOCIALS
-    </div>
-  </div>
-</footer>-->
+</section>
