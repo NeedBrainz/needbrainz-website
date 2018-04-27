@@ -5,7 +5,6 @@
  * CUSTOM CSS
  */
 @import "components/layout.css";
-@import "components/home.css";
 @import "components/blog.css";
 
 @import "tailwind/utilities.css";

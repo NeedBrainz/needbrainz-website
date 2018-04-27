@@ -4,7 +4,9 @@ title: Welcome to Middleman
 <% content_for(:meta) do %>
   <%= dato_meta_tags(dato.homepage) %>
 <% end %>
-
+<% content_for(:css) do %>
+  <%= inline_css "home" %>
+<% end %>
 <header class="homepage-header relative flex flex-col items-center justify-center bg-black text-white">
   <div class="container text-center p-8">
     <%= partial "/partials/logo" %>

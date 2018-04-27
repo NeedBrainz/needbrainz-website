@@ -1,10 +1,20 @@
-<% image_url = article.cover_image.present? ? article.cover_image.file.width(600).height(300).fit("crop").auto("enhance").format(:jpg).to_url : "" %>
+<%
+image_url = article.cover_image.present? ? article.cover_image.file.width(600).height(300).fit("crop").auto("enhance").format(:jpg).to_url : ""
+if image_url != ""
+  css_class = "with-image"
+  content_for(:css) do
+    "#article-#{article.id} .post-image{ background-image: url('#{image_url}')}"
+  end
+else
+  css_class = "no-image"
+end
+%>
 
-<article class="blog-post flex items-stretch w-full md:w-1/2">
-  <div class="m-4 shadow bg-white rounded flex flex-col w-full">
-    <div class="post-image" style="min-width: 300px; min-height: 300px; background-image: url('<%= image_url %>');">
+<article class="blog-post flex items-stretch w-full md:w-1/2 <%= css_class %>">
+  <div class="m-4 shadow bg-white rounded flex flex-col w-full" id="article-<%= article.id %>">
+    <div class="post-image rounded-t bg-cover bg-no-repeat bg-center">
     </div>
-    <div class="post-info p-4">
+    <div class="post-info  p-4">
       <h3><%= link_to article.title, "/blog/#{article.slug}/index.html" %></h3>
       <%= markdown(article.introduction) if article.introduction %>
     </div>

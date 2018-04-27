@@ -11,6 +11,10 @@ if token.blank?
   raise RuntimeError, 'Missing DatoCMS site API token!'
 end
 
+printf "\033[31m!WARNING! -  this will delete all your existing DatoCMS models - press 'y' to continue: \033[0m"
+prompt = STDIN.gets.chomp
+raise RuntimeError, 'Action cancelled by user' unless prompt == 'y'
+
 client = Dato::Site::Client.new(token)
 
 ####################################
@@ -239,6 +243,7 @@ blog_type = client.item_types.create(
   draft_mode_active: true
 )
 blog_type_id = blog_type[:id]
+#article fields
 blog_title = client.fields.create(
   blog_type_id,
   api_key: 'title',
@@ -250,16 +255,16 @@ blog_title = client.fields.create(
   hint: '',
   validators: { required: {} }
 )
-client.fields.create(
+published_date = client.fields.create(
   blog_type_id,
-  api_key: 'cover_image',
-  field_type: 'image',
+  api_key: 'published_date',
+  field_type: 'date',
   appeareance: {},
-  label: 'Cover Image',
+  label: 'Published date',
   localized: false,
-  position: 2,
+  position: 10,
   hint: '',
-  validators: {}
+  validators: { required: {} },
 )
 client.fields.create(
   blog_type_id,
@@ -268,9 +273,31 @@ client.fields.create(
   appeareance: { title_field_id: blog_title[:id], url_prefix: 'https://www.needbrainz.com/blog/' },
   label: 'Slug',
   localized: false,
-  position: 3,
+  position: 20,
   hint: '',
   validators: { unique: {} }
+)
+client.fields.create(
+  blog_type_id,
+  api_key: 'cover_image',
+  field_type: 'image',
+  appeareance: {},
+  label: 'Cover Image',
+  localized: false,
+  position: 30,
+  hint: '',
+  validators: {}
+)
+client.fields.create(
+  blog_type_id,
+  api_key: 'introduction',
+  field_type: 'text',
+  appeareance: { type: 'markdown' },
+  label: 'Introduction',
+  localized: false,
+  position: 35,
+  hint: '',
+  validators: {}
 )
 client.fields.create(
   blog_type_id,
@@ -279,7 +306,7 @@ client.fields.create(
   appeareance: {},
   label: 'SEO',
   localized: false,
-  position: 4,
+  position: 40,
   hint: '',
   validators: {}
 )
@@ -290,7 +317,20 @@ client.fields.create(
   appeareance: {},
   label: 'Blocks',
   localized: false,
-  position: 5,
+  position: 50,
   hint: '',
   validators: { rich_text_blocks: { item_types: [block_text[:id], block_text_image[:id], block_gallery[:id], block_file[:id]] } },
+)
+#update articles default ordering
+client.item_types.update(
+  blog_type_id,
+  name: 'Article',
+  api_key: 'article',
+  draft_mode_active: true,
+  singleton: false,
+  modular_block: false,
+  sortable: false,
+  tree: false,
+  ordering_direction: 'desc',
+  ordering_field: published_date[:id]
 )

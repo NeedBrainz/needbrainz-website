@@ -27,7 +27,7 @@
 }
 @screen md {
   .homepage-blog{
-    @apply .relative;
+    position: relative;
     margin-top: -80px;
     z-index: 25;
   }

@@ -1,3 +1,22 @@
-.blog-post{
-
+.post-image{
+  min-height: 300px;
+}
+@screen md {
+  .blog-post:first-of-type{
+    @apply .w-full;
+  }
+  .blog-post:first-of-type > div{
+      @apply .flex-row;
+      & .post-image{
+         @apply .flex-auto .rounded-l .rounded-r-none;
+      }
+      & .post-info{
+        @apply .w-1/2;
+      }
+  }
+}
+@screen lg {
+  .blog-post:first-of-type > div .post-info{
+    @apply .w-1/3;
+  }
 }

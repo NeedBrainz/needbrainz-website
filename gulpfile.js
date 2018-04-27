@@ -20,13 +20,8 @@ gulp.task('postcss', function() {
   const plugins = [
     require('postcss-import')(),
     tailwindcss('./tailwind.js'),
-    require('autoprefixer')(),
-    require('postcss-calc')(),
-    require('postcss-color-function')(),
-    require('postcss-custom-properties')(),
-    require('postcss-discard-comments')(),
-    require('postcss-custom-media')(),
-    require('cssnano')({zindex: false}),
+    require("postcss-cssnext")(),
+    require('cssnano')({zindex: false, autoprefixer: false, discardComments: {removeAll: true}}),
   ];
   const replace = require('gulp-replace');
   const options = {};
