@@ -25,6 +25,25 @@
   z-index: 10;
   animation: colorize 8s infinite ease-in-out;
 }
+#homepage-socials{
+  z-index: 200;
+}
+#homepage-socials{
+
+  & > a{
+    opacity: 0.6;
+    transition: all 0.5s ease-in-out;
+    border: 5px solid #fff;
+    border-radius: 50%;
+  }
+  & > a:hover{
+    opacity: 1;
+    border-width: 3px;
+  }
+  & > a svg{
+    max-width: 100%;
+  }
+}
 @screen md {
   .homepage-blog{
     position: relative;

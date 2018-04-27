@@ -1,6 +1,9 @@
 {
   "name": "needbrainz-website",
   "version": "0.0.9",
+  "scripts": {
+    "dev": "bundle exec middleman server"
+  },
   "devDependencies": {
     "browser-sync": "^2.23.7",
     "cssnano": "^3.8.1",

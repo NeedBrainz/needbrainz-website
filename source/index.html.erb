@@ -8,11 +8,18 @@ title: Welcome to Middleman
   <%= inline_css "home" %>
 <% end %>
 <header class="homepage-header relative flex flex-col items-center justify-center bg-black text-white">
-  <div class="container text-center p-8">
+  <div class="container text-center p-8 leading-none">
     <%= partial "/partials/logo" %>
-    <h2 class="py-2 text-sm sm:text-md md:text-lg lg:text-xl font-bold uppercase">
+    <h2 class="text-sm sm:text-md md:text-lg lg:text-xl font-bold uppercase pb-2">
       <%= dato.homepage.subtitle %>
     </h2>
+    <div class="flex items-center justify-center relative" id="homepage-socials">
+      <% dato.socials.each do |social| %>
+        <a href="<%= social.url %>" target="_blank" class="p-2 m-2 w-12 h-12">
+          <%= partial "partials/social_icons/#{social.icon}", locals: { width:40 } %>
+        </a>
+      <% end %>
+    </div>
   </div>
 </header>
 <section class="homepage-blog">
@@ -20,6 +27,7 @@ title: Welcome to Middleman
       <div class="flex flex-wrap justify-center -mx-4">
         <% dato.articles.sort_by(&:published_date).reverse[0...3].each_with_index do |article, index| %>
           <%= partial "partials/blog/list", locals: { article: article, index: index+1 } %>
+
         <% end %>
       </div>
     </div>
