@@ -5,7 +5,7 @@
     "dev": "bundle exec middleman server"
   },
   "devDependencies": {
-    "browser-sync": "^2.23.7",
+    "browser-sync": "^2.24.1",
     "cssnano": "^3.8.1",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-help": "^1.6.1",
@@ -14,7 +14,7 @@
     "gulp-replace": "^0.6.1",
     "gulp-util": "3.0.8",
     "path": "^0.12.7",
-    "postcss": "6.0.21",
+    "postcss": "^6.0.22",
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "11.1.0",
     "purgecss": "^0.21.0",

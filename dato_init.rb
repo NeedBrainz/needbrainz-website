@@ -290,6 +290,17 @@ client.fields.create(
 )
 client.fields.create(
   blog_type_id,
+  api_key: 'cover_position',
+  field_type: 'text',
+  appeareance: {},
+  label: 'Cover Position',
+  localized: false,
+  position: 32,
+  hint: '',
+  validators: {}
+)
+client.fields.create(
+  blog_type_id,
   api_key: 'introduction',
   field_type: 'text',
   appeareance: { type: 'markdown' },
