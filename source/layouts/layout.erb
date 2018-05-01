@@ -23,9 +23,6 @@
   </head>
 
   <body class="font-sans text-black leading-normal bg-grey-lightest antialiased <%= current_page.data.body_class || "default" %>">
-    <% if !current_page.data.homepage %>
-      <%= partial "partials/header" %>
-    <% end %>
     <main>
       <%= yield %>
     </main>
