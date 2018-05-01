@@ -24,6 +24,10 @@
         @apply .w-1/2;
       }
   }
+  .blog-post-detail .post-info{
+    min-height: 150px;
+    height: 20vh;
+  }
 }
 @screen lg {
   .blog-post:first-of-type > a .post-info{

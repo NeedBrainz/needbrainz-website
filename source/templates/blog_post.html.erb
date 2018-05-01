@@ -6,29 +6,39 @@ body_class: blog-post
   <%= dato_meta_tags(article) %>
 <% end %>
 <% content_for(:css) do %>
-#post-bg{
+#post-bg .header-bg-img{
   background-image: url('<%= article.cover_image.file.width(600).auto("enhance").format(:jpg).to_url %>');
 }
 @media screen and (min-width: 600px){
-  #post-bg {
+  #post-bg .header-bg-img {
     background-image: url('<%= article.cover_image.file.width(1200).auto("enhance").format(:jpg).to_url %>');
   }
 }
 @media screen and (min-width: 1200px){
-  #post-bg {
-    background-image: url('<%= article.cover_image.file.width(1920).auto("enhance").format(:jpg).to_url %>');
+  #post-bg .header-bg-img {
+    background-image: url('<%= article.cover_image.file.width(1600).auto("enhance").format(:jpg).to_url %>');
   }
 }
 <% end %>
-<div id="post-bg" class="header-bg relative bg-grey-darkest bg-cover bg-no-repeat <%= article.cover_position %>">
-
+<div id="post-bg" class="header-bg flex flex-col items-center justify-center relative bg-black">
+  <div class="header-bg-img w-full flex-auto bg-cover bg-no-repeat <%= article.cover_position %>"></div>
 </div>
 <article class="blog-post-detail move-top">
   <div class="container">
-    <div class="bg-white shadow min-h-screen rounded-t">
-      <div class="p-4 text-center border-b border-grey-light">
-        <h1 class="text-2xl"><%= article.title %></h1>
+    <div class="bg-white shadow rounded-t">
+      <div class="flex flex-col post-info">
+        <div class="flex-auto py-8 md:py-4 px-4 flex items-center justify-center text-center">
+          <h1 class="text-xl md:text-2xl"><%= article.title %></h1>
+        </div>
+        <div class="py-4 px-8 font-light font-serif uppercase flex flex-wrap bg-grey-lightest border-b border-t border-grey-light">
+            <div class="flex-auto">2017 July 2018</div>
+            <div class="text-right">Category</div>
+        </div>
       </div>
+      <div class="p-8 leading-normal">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+
     </div>
   </div>
 </article>

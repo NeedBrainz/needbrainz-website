@@ -1,6 +1,6 @@
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5{
-  @apply .font-serif;
+  @apply .font-serif .leading-tight;
 }
 a{
     color: inherit;
@@ -11,6 +11,10 @@ svg{
 }
 .page-header{
   z-index: 100;
+  background: -moz-linear-gradient(top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
 }
 .move-top{
   position: relative;
@@ -19,6 +23,9 @@ svg{
 }
 .header-bg{
   height: 300px;
+}
+.header-bg .header-bg-img{
+    max-width: 1600px;
 }
 .header-bg:before{
   content: "";
@@ -37,10 +44,13 @@ svg{
 }
 @screen md {
   .move-top{
+    margin-top: -20vh;
+  }
+  .homepage .move-top{
     margin-top: -80px;
   }
   .header-bg{
-    height: 50vh;
+    height: 65vh;
     min-height: 500px;
   }
 }
