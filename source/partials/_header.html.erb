@@ -1,0 +1,55 @@
+<%
+add_component('animation')
+add_component('position-observer')
+%>
+<div id="marker" class="absolute pin-t pin-x h-1">
+  <amp-position-observer on="enter:hideBGNormal.start;exit:showBGNormal.start"
+      intersection-ratios="0"
+      layout="nodisplay">
+  </amp-position-observer>
+  <amp-animation id="showBGNormal"
+    layout="nodisplay">
+    <script type="application/json">
+      {
+        "duration": "400ms",
+        "fill": "both",
+        "iterations": "1",
+        "direction": "alternate",
+        "animations": [{
+          "selector": "#page-header-bg",
+          "keyframes": [{
+            "opacity": "1",
+            "visibility": "visible"
+          }]
+        }]
+      }
+    </script>
+  </amp-animation>
+  <amp-animation id="hideBGNormal"
+  layout="nodisplay">
+  <script type="application/json">
+    {
+      "duration": "400ms",
+      "fill": "both",
+      "iterations": "1",
+      "direction": "alternate",
+      "animations": [{
+        "selector": "#page-header-bg",
+        "keyframes": [{
+          "opacity": "0",
+          "visibility": "hidden"
+        }]
+      }]
+    }
+  </script>
+</amp-animation>
+
+</div>
+<header class="page-header fixed pin-t pin-x h-16 flex items-center text-white">
+  <div class="container z-30">
+    <% link_to '/index.html', {class: 'navigation-logo'} do %>
+      <%= partial("partials/logosm") %>
+    <% end %>
+  </div>
+  <div id="page-header-bg" class="absolute pin-x pin-y bg-black z-10"></div>
+</header>

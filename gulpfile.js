@@ -20,7 +20,12 @@ gulp.task('postcss', function() {
   const plugins = [
     require('postcss-import')(),
     tailwindcss('./tailwind.js'),
-    require("postcss-cssnext")(),
+    require("postcss-cssnext")({
+      browsers: ['last 2 versions'],
+      features: {
+        rem: false
+      }
+    }),
     require('cssnano')({zindex: false, autoprefixer: false, discardComments: {removeAll: true}}),
   ];
   const replace = require('gulp-replace');

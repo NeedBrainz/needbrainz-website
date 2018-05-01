@@ -1,1 +1,33 @@
-<h1><%= article.title %></h1>
+---
+body_class: blog-post
+---
+<% content_for(:meta) do %>
+  <%= dato_meta_tags(article) %>
+<% end %>
+<% content_for(:css) do %>
+#post-bg{
+  background-image: url('<%= article.cover_image.file.width(600).auto("enhance").format(:jpg).to_url %>');
+}
+@media screen and (min-width: 600px){
+  #post-bg {
+    background-image: url('<%= article.cover_image.file.width(1200).auto("enhance").format(:jpg).to_url %>');
+  }
+}
+@media screen and (min-width: 1200px){
+  #post-bg {
+    background-image: url('<%= article.cover_image.file.width(1920).auto("enhance").format(:jpg).to_url %>');
+  }
+}
+<% end %>
+<div id="post-bg" class="header-bg relative bg-grey-darkest bg-cover bg-no-repeat <%= article.cover_position %>">
+
+</div>
+<article class="blog-post-detail move-top">
+  <div class="container">
+    <div class="bg-white shadow min-h-screen rounded-t">
+      <div class="p-4 text-center border-b border-grey-light">
+        <h1 class="text-2xl"><%= article.title %></h1>
+      </div>
+    </div>
+  </div>
+</article>

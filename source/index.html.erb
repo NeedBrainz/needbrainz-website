@@ -1,5 +1,7 @@
 ---
 title: Welcome to Middleman
+body_class: homepage
+homepage: true
 ---
 <% content_for(:meta) do %>
   <%= dato_meta_tags(dato.homepage) %>
@@ -22,7 +24,7 @@ title: Welcome to Middleman
     </div>
   </div>
 </header>
-<section class="homepage-blog">
+<section class="homepage-blog move-top">
     <div class="container">
       <div class="flex flex-wrap justify-center -mx-4">
         <% dato.articles.sort_by(&:published_date).reverse[0...3].each_with_index do |article, index| %>
