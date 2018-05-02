@@ -15,7 +15,7 @@ homepage: true
     <h2 class="text-sm sm:text-md md:text-lg lg:text-xl font-bold uppercase pb-2">
       <%= dato.homepage.subtitle %>
     </h2>
-    <div class="flex items-center justify-center relative" id="homepage-socials">
+    <div class="flex items-center justify-center relative z-10" id="homepage-socials">
       <% dato.socials.each do |social| %>
         <a href="<%= social.url %>" target="_blank" class="p-1 md:p-2 m-2 w-8 h-8 md:w-12 md:h-12" title="<%= social.title %>">
           <%= partial "partials/social_icons/#{social.icon}", locals: { width:40 } %>

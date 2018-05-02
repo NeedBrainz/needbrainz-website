@@ -1,6 +1,13 @@
 
-<%= partial "partials/header" %>
 <h1>Blog</h1>
+<ul>
+<% dato.categories.each do |category| %>
+  <li>
+    <% link_to "/category/#{category.slug}" do %>
+      <%= category.name %>
+    <% end %>
+  </li>
+<% end %>
 <% items.each do |article| %>
   <h2><%= article.title %></h2>
 <% end %>

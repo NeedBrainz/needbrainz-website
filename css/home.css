@@ -25,9 +25,7 @@
   z-index: 10;
   animation: colorize 8s infinite ease-in-out;
 }
-#homepage-socials{
-  z-index: 200;
-}
+
 #homepage-socials{
 
   & > a{

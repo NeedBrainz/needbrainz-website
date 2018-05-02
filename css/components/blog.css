@@ -1,7 +1,7 @@
 .post-image{
   height: 200px;
 }
-.blog-post > a:hover{
+.blog-post > div:hover{
   @apply .shadow-lg;
   transition: all .4s ease;
   transform: translate3D(0,-2px,0);
@@ -10,18 +10,18 @@
 @screen md {
   .post-image{
     min-height: 300px;
-    height: 100%;
   }
-  .blog-post:first-of-type{
+
+  .homepage-blog .blog-post:first-of-type{
     @apply .w-full;
   }
-  .blog-post:first-of-type > a{
+  .homepage-blog .blog-post:first-of-type > div{
       @apply .flex-row;
       & .post-image{
          @apply .flex-auto .rounded-l .rounded-r-none;
       }
       & .post-info{
-        @apply .w-1/2;
+        @apply .w-1/2 .flex-none;
       }
   }
   .blog-post-detail .post-info{
@@ -30,7 +30,7 @@
   }
 }
 @screen lg {
-  .blog-post:first-of-type > a .post-info{
+  .homepage-blog .blog-post:first-of-type > div .post-info{
     @apply .w-2/5;
   }
 }

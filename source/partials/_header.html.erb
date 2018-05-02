@@ -1,7 +1,4 @@
-<%
-add_component('animation')
-add_component('position-observer')
-%>
+
 <div id="marker" class="absolute pin-t pin-x h-1">
   <amp-position-observer on="enter:hideBGNormal.start;exit:showBGNormal.start"
       intersection-ratios="0"
@@ -45,10 +42,12 @@ add_component('position-observer')
 </amp-animation>
 
 </div>
-<header class="page-header fixed pin-t pin-x h-16 flex items-center text-white">
-  <div class="container z-30 flex items-center justify-center">
-    <% link_to '/index.html', {class: 'navigation-logo'} do %>
-      <%= partial("partials/logosm") %>
+<header class="page-header fixed pin-t pin-x h-16 flex items-center text-white z-30">
+  <div class="container z-20 flex items-center justify-center">
+    <% if !current_page.data.homepage %>
+      <% link_to '/index.html', {class: 'navigation-logo'} do %>
+        <%= partial("partials/logosm") %>
+      <% end %>
     <% end %>
   </div>
   <div id="page-header-bg" class="absolute pin-x pin-y bg-black z-10"></div>

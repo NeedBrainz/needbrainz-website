@@ -1,0 +1,42 @@
+
+<% content_for(:meta) do %>
+  <%= dato_meta_tags(category) %>
+<% end %>
+<% content_for(:css) do %>
+#category-bg .header-bg-img{
+  background-image: url('<%= category.cover_image.file.width(600).auto("enhance").format(:jpg).to_url %>');
+}
+@media screen and (min-width: 600px){
+  #category-bg .header-bg-img {
+    background-image: url('<%= category.cover_image.file.width(1200).auto("enhance").format(:jpg).to_url %>');
+  }
+}
+@media screen and (min-width: 1200px){
+  #category-bg .header-bg-img {
+    background-image: url('<%= category.cover_image.file.width(1600).auto("enhance").format(:jpg).to_url %>');
+  }
+}
+<% end %>
+<div id="category-bg" class="header-bg flex flex-col items-center justify-center relative bg-black">
+  <div class="header-bg-img w-full flex-auto bg-cover bg-no-repeat bg-center flex flex-col items-center justify-end">
+
+  </div>
+</div>
+<h1 class="bg-black text-white text-center p-4">
+  <%= category.name %>
+</h1>
+<div class="container">
+  <div class="flex flex-wrap justify-center -mx-4 mt-4">
+    <% items.each do |article| %>
+      <%= partial "partials/blog/list", locals: { article: article, index: 2 } %>
+    <% end %>
+  </div>
+  <div class="pagination">
+    <% if pager.previous_page  %>
+      <%= link_to "Previous page", pager.page_path(pager.previous_page), class: "pagination__prev" %>
+    <% end %>
+    <% if pager.next_page  %>
+      <%= link_to "Next page", pager.page_path(pager.next_page), class: "pagination__prev" %>
+    <% end %>
+  </div>
+</div>

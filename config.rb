@@ -32,11 +32,18 @@ ignore "/templates/*"
 activate :pagination
 
 dato.tap do |dato|
+  #blog post detail
   dato.articles.each do |article|
     proxy "/blog/#{article.slug}/index.html", "/templates/blog_post.html", locals: { article: article }
   end
 
-  paginate dato.articles.sort_by(), "/blog", "/templates/blog.html", suffix: "/page/:num/index", per_page: 10
+  #blog categories posts with pagination
+  dato.categories.each do |category|
+    paginate dato.articles.select{ |a| a.category == category }.sort_by(&:published_date).reverse!, "/category/#{category.slug}", "/templates/category.html", suffix: "/page/:num/index", per_page: 10, locals: { category: category }
+  end
+
+  #blog posts with pagination
+  #paginate dato.articles.sort_by(&:published_date).reverse!, "/blog", "/templates/blog.html", suffix: "/page/:num/index", per_page: 10
 end
 
 activate :directory_indexes

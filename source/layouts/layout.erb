@@ -13,6 +13,10 @@
     <% if ENV['GA_ACCOUNT'] != ''
       add_component('analytics')
     end %>
+    <%
+      add_component('animation')
+      add_component('position-observer')
+    %>
     <link rel="canonical" href="<%= ENV['SITE_URL'] %><%= current_page.url %>" />
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans|Roboto" rel="stylesheet">
     <%= dato_favicon_meta_tags %>
@@ -23,6 +27,7 @@
   </head>
 
   <body class="font-sans text-black leading-normal bg-grey-lightest antialiased <%= current_page.data.body_class || "default" %>">
+    <%= partial "partials/header" %>
     <main>
       <%= yield %>
     </main>

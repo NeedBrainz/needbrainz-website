@@ -11,12 +11,18 @@ end
 %>
 
 <article class="blog-post flex items-stretch w-full md:w-1/2 <%= css_class %>">
-  <% link_to "/blog/#{article.slug}/index.html", class: "m-4 shadow hover:shadow-lg bg-white rounded cursor-pointer flex flex-col w-full", id: "article-#{article.id}" do %>
-    <div class="post-image rounded-t bg-cover bg-no-repeat <%= article.cover_position %>">
+  <div class="m-4 shadow hover:shadow-lg bg-white rounded flex flex-col w-full" id="article-<%= article.id %>">
+    <% link_to "/blog/#{article.slug}/index.html", class: "post-image rounded-t bg-cover bg-no-repeat #{article.cover_position}" do %>
+    <div></div>
+    <% end %>
+    <div class="post-info flex-auto flex flex-col">
+        <% link_to "/blog/#{article.slug}/index.html", class: "flex-auto  p-4 md:p-6" do %>
+          <h3 class="leading-tight mb-4"><%= article.title %></h3>
+          <%= markdown(article.introduction) if article.introduction %>
+        <% end %>
+        <div class="p-4 border-t border-grey-light bg-grey-lightest rounded-b text-sm font-serif uppercase">
+          <%= link_to article.category.name, "/category/#{article.category.slug}" %>
+        </div>
     </div>
-    <div class="post-info  p-4 md:p-6">
-      <h3 class="leading-tight"><%= article.title %></h3>
-      <%= markdown(article.introduction) if article.introduction %>
-    </div>
-  <% end %>
+  </div>
 </article>
