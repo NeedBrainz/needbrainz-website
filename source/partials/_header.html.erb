@@ -43,12 +43,40 @@
 
 </div>
 <header class="page-header fixed pin-t pin-x h-16 flex items-center text-white z-30">
-  <div class="container z-20 flex items-center justify-center">
-    <% if !current_page.data.homepage %>
-      <% link_to '/index.html', {class: 'navigation-logo'} do %>
-        <%= partial("partials/logosm") %>
+  <div class="container z-20 flex">
+    <div class="flex-auto">
+      <% if !current_page.data.homepage %>
+        <% link_to '/index.html', {class: 'navigation-logo'} do %>
+          <%= partial("partials/logosm") %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+    <button class="hamburger text-3xl text-white" on='tap:menu-sidebar.toggle'>
+      ☰
+    </button>
   </div>
   <div id="page-header-bg" class="absolute pin-x pin-y bg-black z-10"></div>
 </header>
+<amp-sidebar id="menu-sidebar" class="bg-black text-white" layout="nodisplay" side="right">
+  <ul class="list-reset menu-links font-serif uppercase  border-t border-grey-dark">
+    <li>
+      <% link_to '/index.html', class: 'block px-4 py-8 flex items-center border-b border-grey-dark hover:bg-grey-darkest' do %>
+        <%= partial("partials/icons/home", {locals: {css_class: 'w-8 h-8 text-primary mr-4'}}) %> <span>Home</span>
+      <% end %>
+    </li>
+    <li>
+      <% link_to '/blog/index.html', class: 'block px-4 py-8 flex items-center border-b border-grey-dark hover:bg-grey-darkest' do %>
+        <%= partial("partials/icons/folder", {locals: {css_class: 'w-8 h-8 text-primary mr-4'}}) %> <span>Blog</span>
+      <% end %>
+      <ul class="list-reset">
+      <% dato.categories.each do | category |%>
+        <li>
+          <% link_to "/category/#{category.slug}/index.html", class: 'block pl-8 py-4 flex items-center border-b bg-grey-darkest border-grey-darkest hover:bg-grey-dark' do %>
+            <div class="pl-8"><%= category.name %></div>
+          <% end %>
+        </li>
+      <% end %>
+      </ul>
+    </li>
+  </ul>
+</amp-sidebar>

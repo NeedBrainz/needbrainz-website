@@ -24,8 +24,9 @@
   </div>
 </div>
 <h1 class="text-center mx-auto w-full md:w-1/3 h-16 category-title-wrapper uppercase">
-  <div class="bg-grey-lightest category-title p-4 mx-4 rounded-t">
-    <amp-fit-text  layout="fixed-height" height="32"><%= category.name %></amp-fit-text>
+  <div class="bg-black  text-white category-title p-4 mx-4 rounded-t flex items-center justify-center">
+    <%= partial("partials/icons/folder", {locals: {css_class: 'w-8 h-8 text-primary mr-4'}}) %>
+    <amp-fit-text class="flex-auto"  layout="fixed-height" height="32"><%= category.name %></amp-fit-text>
   </div>
 </h1>
 <div class="bg-white border-t border-b py-8 shadow">

@@ -42,6 +42,9 @@ svg{
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
 
 }
+amp-sidebar{
+  width: 450px;
+}
 @screen md {
   .move-top{
     margin-top: -20vh;

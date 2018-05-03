@@ -43,7 +43,7 @@ dato.tap do |dato|
   end
 
   #blog posts with pagination
-  #paginate dato.articles.sort_by(&:published_date).reverse!, "/blog", "/templates/blog.html", suffix: "/page/:num/index", per_page: 10
+  paginate dato.articles.sort_by(&:published_date).reverse!, "/blog", "/templates/blog.html", suffix: "/page/:num/index", per_page: 10
 end
 
 activate :directory_indexes
