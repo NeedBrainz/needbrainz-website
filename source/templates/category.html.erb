@@ -2,6 +2,7 @@
 <% content_for(:meta) do %>
   <%= dato_meta_tags(category) %>
 <% end %>
+<% add_component("fit-text") %>
 <% content_for(:css) do %>
 #category-bg .header-bg-img{
   background-image: url('<%= category.cover_image.file.width(600).auto("enhance").format(:jpg).to_url %>');
@@ -22,9 +23,16 @@
 
   </div>
 </div>
-<h1 class="bg-black text-white text-center p-4">
-  <%= category.name %>
+<h1 class="text-center mx-auto w-full md:w-1/3 h-16 category-title-wrapper uppercase">
+  <div class="bg-grey-lightest category-title p-4 mx-4 rounded-t">
+    <amp-fit-text  layout="fixed-height" height="32"><%= category.name %></amp-fit-text>
+  </div>
 </h1>
+<div class="bg-white border-t border-b py-8 shadow">
+  <div class="container text-center">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique doloribus modi illo molestiae, excepturi saepe sequi eaque voluptatibus qui blanditiis ad omnis perspiciatis aut, architecto velit quibusdam ab! Fugit, accusantium.</p>
+  </div>
+</div>
 <div class="container">
   <div class="flex flex-wrap justify-center -mx-4 mt-4">
     <% items.each do |article| %>

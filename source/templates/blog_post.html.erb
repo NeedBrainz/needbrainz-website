@@ -30,7 +30,7 @@ body_class: blog-post
           <h1 class="text-xl md:text-2xl"><%= article.title %></h1>
         </div>
         <div class="py-4 px-4 md:px-8 font-light font-serif uppercase flex flex-wrap bg-grey-lightest border-b border-t border-grey-light">
-            <div class="flex-auto">2017 July 2018</div>
+            <div class="flex-auto"><%= article.published_date.strftime("%d %B %Y") %></div>
             <div class="text-right">
               <%= link_to article.category.name, "/category/#{article.category.slug}" %>
             </div>
