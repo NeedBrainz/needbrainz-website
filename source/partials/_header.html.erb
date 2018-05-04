@@ -43,7 +43,7 @@
 
 </div>
 <header class="page-header fixed pin-t pin-x h-16 flex items-center text-white z-30">
-  <div class="container z-20 flex">
+  <div class="container z-20 flex items-center">
     <div class="flex-auto">
       <% if !current_page.data.homepage %>
         <% link_to '/index.html', {class: 'navigation-logo'} do %>
@@ -60,12 +60,12 @@
 <amp-sidebar id="menu-sidebar" class="bg-black text-white" layout="nodisplay" side="right">
   <ul class="list-reset menu-links font-serif uppercase  border-t border-grey-dark">
     <li>
-      <% link_to '/index.html', class: 'block px-4 py-8 flex items-center border-b border-grey-dark hover:bg-grey-darkest' do %>
+      <% link_to '/index.html', class: 'block px-4 py-6 flex items-center border-b border-grey-dark hover:bg-grey-darkest' do %>
         <%= partial("partials/icons/home", {locals: {css_class: 'w-8 h-8 text-primary mr-4'}}) %> <span>Home</span>
       <% end %>
     </li>
     <li>
-      <% link_to '/blog/index.html', class: 'block px-4 py-8 flex items-center border-b border-grey-dark hover:bg-grey-darkest' do %>
+      <% link_to '/blog/index.html', class: 'block px-4 py-6 flex items-center border-b border-grey-dark hover:bg-grey-darkest' do %>
         <%= partial("partials/icons/folder", {locals: {css_class: 'w-8 h-8 text-primary mr-4'}}) %> <span>Blog</span>
       <% end %>
       <ul class="list-reset">

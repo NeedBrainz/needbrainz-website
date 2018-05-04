@@ -228,6 +228,89 @@ client.fields.create(
   validators: {}
 )
 
+###################
+# BLOG CATEGORIES #
+###################
+blog_category = client.item_types.create(
+  name: 'Category',
+  singleton: false,
+  modular_block: false,
+  sortable: true,
+  tree: false,
+  api_key: 'category',
+  ordering_direction: nil,
+  ordering_field: nil,
+  draft_mode_active: false
+)
+blog_category_id = blog_category[:id]
+#blog categories fields
+blog_category_title = client.fields.create(
+  blog_category_id,
+  api_key: 'name',
+  field_type: 'string',
+  appeareance: { type: 'title' },
+  label: 'Name',
+  localized: false,
+  position: 1,
+  hint: '',
+  validators: { required: {} }
+)
+client.fields.create(
+  blog_category_id,
+  api_key: 'slug',
+  field_type: 'slug',
+  appeareance: { title_field_id: blog_category_title[:id], url_prefix: 'https://www.needbrainz.com/category/' },
+  label: 'Slug',
+  localized: false,
+  position: 20,
+  hint: '',
+  validators: { unique: {} }
+)
+client.fields.create(
+  blog_category_id,
+  api_key: 'cover_image',
+  field_type: 'image',
+  appeareance: {},
+  label: 'Cover Image',
+  localized: false,
+  position: 30,
+  hint: '',
+  validators: {}
+)
+client.fields.create(
+  blog_category_id,
+  api_key: 'cover_position',
+  field_type: 'text',
+  appeareance: {},
+  label: 'Cover Position',
+  localized: false,
+  position: 32,
+  hint: '',
+  validators: {}
+)
+client.fields.create(
+  blog_category_id,
+  api_key: 'introduction',
+  field_type: 'text',
+  appeareance: { type: 'markdown' },
+  label: 'Introduction',
+  localized: false,
+  position: 35,
+  hint: '',
+  validators: {}
+)
+client.fields.create(
+  blog_category_id,
+  api_key: 'seo',
+  field_type: 'seo',
+  appeareance: {},
+  label: 'SEO',
+  localized: false,
+  position: 40,
+  hint: '',
+  validators: {}
+)
+
 #################
 # BLOG ARTICLES #
 #################
@@ -276,6 +359,17 @@ client.fields.create(
   position: 20,
   hint: '',
   validators: { unique: {} }
+)
+client.fields.create(
+  blog_type_id,
+  api_key: 'category',
+  field_type: 'link',
+  appeareance: { type: 'select' },
+  label: 'Category',
+  localized: false,
+  position: 25,
+  hint: '',
+  validators: { item_item_type: {item_types: blog_category_id} }
 )
 client.fields.create(
   blog_type_id,

@@ -5,7 +5,7 @@ require 'pp'
 token = ENV['DATO_API_TOKEN']
 
 if token.blank? && File.exist?('.env')
-  token = Dotenv::Environment.new('.env')['DATO_API_TOKEN']
+  token = Dotenv::Environment.new('.env', true)['DATO_API_TOKEN']
 end
 
 if token.blank?
@@ -14,4 +14,8 @@ end
 
 client = Dato::Site::Client.new(token)
 
-pp client.item_types.all
+### ITEM TYPES ###
+#pp client.item_types.all
+
+### FIELDS ####
+pp client.fields.all(31443)
